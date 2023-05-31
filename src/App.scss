@@ -1,0 +1,18 @@
+@use '~@catppuccin/palette/scss/mocha';
+.App {
+  position: absolute;
+  display: flex;
+  background-color: mocha.$crust;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.editor-container {
+
+  & > section{
+    border-radius: 8px;
+    border: 8px solid mocha.$mauve;
+  }
+
+}
