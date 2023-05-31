@@ -2,17 +2,14 @@
 .App {
   position: absolute;
   display: flex;
+  flex-direction: column;
   background-color: mocha.$crust;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   align-items: center;
   justify-content: center;
 }
 .editor-container {
-
-  & > section{
-    border-radius: 8px;
-    border: 8px solid mocha.$mauve;
-  }
-
+  border: 8px solid mocha.$mauve;
+  border-radius: 8px;
 }
