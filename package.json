@@ -1,6 +1,7 @@
 {
   "name": "codespaces-react",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@catppuccin/palette": "^0.1.8",
@@ -11,16 +12,13 @@
     "dart-sass": "^1.25.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
     "sass": "^1.62.1",
     "vm2": "^3.9.19",
     "web-vitals": "^3.1.0"
   },
   "scripts": {
-    "start": "BROWSER=none WDS_SOCKET_PORT=0 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "vite build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite": "^4.3.9"
   }
 }
