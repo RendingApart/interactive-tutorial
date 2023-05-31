@@ -2,7 +2,7 @@ import "./App.scss";
 import { Editor } from "@monaco-editor/react";
 import * as mocha from "./monaco-mocha.json";
 import palette from "@catppuccin/palette";
-// import { VM } from "vm2";
+import
 
 function App() {
   return (
