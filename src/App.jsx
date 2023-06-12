@@ -27,15 +27,25 @@ function App() {
   return (
     <div className="App">
       <h1>Interactive Code Tutorial</h1>
+      <p>Sadly, this project turned out to be larger than initially imagined.<br/>This will only have one challenge just for demonstration purposes.</p>
+      <br/>
+      <p>Your goal is to write a function that multiplies the input value by three and adds two.<br/>A function that multiplies the input by two is provided for reference.</p>
+      <PyEditor py={ pyodide } demo={
+`# Replace the code in the
+# following function with 
+# your solution.
+def funnyfunction(a):
+  return a * 2`} codeRan={(x, y, eq) => {
+        setCodeOut(
+
+`funnyfunc(${x}) ${eq ? "==" : "!="} ${y}`)
+      }} solutionset={[[1,5], [2,8], [3,11], [4,14], [5,17]]} />
       <div className="output-container">
-        <p>Output</p>
+        <p>Output:</p>
         <code>
         {codeOut} 
         </code>
       </div>
-      <PyEditor py={ pyodide } namespace={{x: 64}} codeRan={(out) => {
-        setCodeOut(out)
-      }} />
     </div>
   );
 }
