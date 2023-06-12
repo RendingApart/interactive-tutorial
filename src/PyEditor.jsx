@@ -30,7 +30,6 @@ function PyEditor({demo, py, codeRan, solutionset}) {
       solutionset.forEach(async (sample, i, arr) => {
         let out = await py.runPythonAsync(code + `\nfunnyfunction(${sample[0]})`);
         codeRan(sample[0], sample[1], out == sample[1])
-        wait(500)
       })
     }}
   >Run!</button>
