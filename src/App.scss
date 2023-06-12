@@ -12,4 +12,19 @@
 .editor-container {
   border: 8px solid mocha.$mauve;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: mocha.$mauve;
+  #code-runner{
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 8px;
+    border: none;
+    background: mocha.$peach;
+    width: 50%;
+    &:active {
+      background: rgba(mocha.$peach, 0.75);
+    }
+  }
 }

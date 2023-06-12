@@ -1,35 +1,41 @@
 import "./App.scss";
-import { Editor } from "@monaco-editor/react";
-import * as mocha from "./monaco-mocha.json";
-import palette from "@catppuccin/palette";
-import
+import { loadPyodide } from "pyodide";
+import { useEffect, useState, useRef } from "react";
+import PyEditor from "./PyEditor";
+
+async function initPyodide() {
+  return await loadPyodide({
+    indexURL : "https://cdn.jsdelivr.net/pyodide/v0.23.2/full/"
+  });
+}
+
+async function pyRunCode(pyodide, code) {
+  console.log(`code: ${code}`)
+  return pyodide.runPythonAsync(code);
+}
 
 function App() {
+  const [pyodide, setPyodide] = useState()
+  const [codeOut, setCodeOut] = useState("");
+
+  useEffect(() => {
+    (async ()=>{
+      setPyodide(await initPyodide())
+    })()
+  }, [])
+
   return (
     <div className="App">
-      <p>Hello hi test hi</p>
-      <div className="editor-container">
-        <Editor
-          height="50vh"
-          width="50vw"
-          defaultLanguage="javascript"
-          defaultValue="// some comment"
-          theme="catppuccinmocha"
-          loading={
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                backgroundColor: palette.variants.mocha.mauve.hex,
-              }}
-            ></div>
-          }
-          beforeMount={(monaco) => {
-            monaco.editor.defineTheme("catppuccinmocha", mocha);
-          }}
-        />
+      <h1>Interactive Code Tutorial</h1>
+      <div className="output-container">
+        <p>Output</p>
+        <code>
+        {codeOut} 
+        </code>
       </div>
+      <PyEditor py={ pyodide } namespace={{x: 64}} codeRan={(out) => {
+        setCodeOut(out)
+      }} />
     </div>
   );
 }

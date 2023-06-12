@@ -8,6 +8,6 @@ export default defineConfig({
         host: true
     },
     build: {
-    outDir: './build'
+        outDir: './build'
     },
 })
