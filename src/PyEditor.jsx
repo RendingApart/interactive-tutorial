@@ -2,7 +2,6 @@ import { Editor } from "@monaco-editor/react";
 import * as mocha from "./monaco-mocha.json";
 import palette from "@catppuccin/palette";
 import { useEffect, useState, useRef } from "react";
-import { wait } from "@testing-library/user-event/dist/types/utils";
 
 function PyEditor({demo, py, codeRan, solutionset}) {
     if (py === undefined) return <p style={{color: "red"}}>Missing python runtime.</p>
