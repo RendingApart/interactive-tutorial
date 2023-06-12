@@ -3,7 +3,7 @@ import * as mocha from "./monaco-mocha.json";
 import palette from "@catppuccin/palette";
 import { useEffect, useState, useRef } from "react";
 
-function PyEditor({demo, py, codeRan, solutionset}) {
+function PyEditor({demo, py, codeRan, solutionset,}) {
     if (py === undefined) return <p style={{color: "red"}}>Missing python runtime.</p>
     const mon = useRef(null);
     // const namespace = useRef(py.toPy(objects))
@@ -26,11 +26,18 @@ function PyEditor({demo, py, codeRan, solutionset}) {
         setCode(val)
       }}
     />
-    <button id="code-runner" onClick={(evt) => {
-      solutionset.forEach(async (sample, i, arr) => {
+    <button id="code-runner" onClick={async (evt) => {
+      let solved = await Promise.all(solutionset.map(async (sample, i, arr) => {
         let out = await py.runPythonAsync(code + `\nfunnyfunction(${sample[0]})`);
-        codeRan(sample[0], sample[1], out == sample[1])
-      })
+        return out == sample[1]
+      }))
+      console.log(solved)
+      if (solved.includes(false)) {
+        codeRan(false)
+      } else {
+        codeRan(true)
+      }
+      
     }}
   >Run!</button>
   </div>
